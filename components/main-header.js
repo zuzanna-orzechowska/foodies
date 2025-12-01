@@ -5,7 +5,7 @@ import classes from './main-header.module.css'
 import Image from 'next/image';
 import MainHeaderBackground from './main-header-background';
 
-function MainHeader() {
+export default function MainHeader() {
   return (
     <>
         <MainHeaderBackground/>
@@ -29,5 +29,3 @@ function MainHeader() {
     </>
   )
 }
-
-export default MainHeader

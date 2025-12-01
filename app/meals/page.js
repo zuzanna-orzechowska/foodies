@@ -1,9 +1,7 @@
 import React from 'react'
 
-function MealsMain() {
+export default function MealsMain() {
   return (
     <div>MealsMain</div>
   )
 }
-
-export default MealsMain
