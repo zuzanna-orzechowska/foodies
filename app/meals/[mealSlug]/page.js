@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { getMeal } from '@/lib/meals';
 
 async function Meal({ params }) {
-  const meal = await getMeal(params.mealSlug);
+  const resolvedParams = await params;
+  const meal = await getMeal(resolvedParams.mealSlug);
 
   return (
     <>
