@@ -1,5 +1,11 @@
-const sql = require('better-sqlite3');
-const db = sql('meals.db');
+const { createClient } = require("@libsql/client");
+const dotenv = require("dotenv");
+dotenv.config({ path: ".env" });
+
+const db = createClient({
+  url: process.env.TURSO_DATABASE_URL,
+  authToken: process.env.TURSO_AUTH_TOKEN,
+});
 
 const dummyMeals = [
   {
@@ -164,8 +170,10 @@ const dummyMeals = [
   },
 ];
 
-db.prepare(`
-   CREATE TABLE IF NOT EXISTS meals (
+async function initData() {
+  console.log("⏳ Tworzenie tabeli...");
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS meals (
        id INTEGER PRIMARY KEY AUTOINCREMENT,
        slug TEXT NOT NULL UNIQUE,
        title TEXT NOT NULL,
@@ -175,25 +183,27 @@ db.prepare(`
        creator TEXT NOT NULL,
        creator_email TEXT NOT NULL
     )
-`).run();
+  `);
 
-async function initData() {
-  const stmt = db.prepare(`
-      INSERT INTO meals VALUES (
-         null,
-         @slug,
-         @title,
-         @image,
-         @summary,
-         @instructions,
-         @creator,
-         @creator_email
-      )
-   `);
-
+  console.log("Wstawianie danych...");
   for (const meal of dummyMeals) {
-    stmt.run(meal);
+    await db.execute({
+      sql: `INSERT INTO meals (slug, title, image, summary, instructions, creator, creator_email) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      args: [
+        meal.slug,
+        meal.title,
+        meal.image,
+        meal.summary,
+        meal.instructions,
+        meal.creator,
+        meal.creator_email
+      ],
+    });
   }
+  console.log("Gotowe! Dane zostały wysłane do Turso.");
 }
 
-initData();
+initData().catch((err) => {
+    console.error("Błąd:", err);
+});
