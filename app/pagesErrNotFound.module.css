@@ -1,0 +1,49 @@
+.notFound,
+.error {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.notFound h1,
+.error h1 {
+  font-size: 3rem;
+  margin: 0px;
+  font-weight: 900;
+  color: #262626;
+  background: linear-gradient(90deg, #f9572a, #ffc905);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.notFound p,
+.error p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #ddd8d8;
+}
+
+.cta {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, #f9572a, #ff9b05);
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.cta a:hover,
+.cta a:active {
+  background: linear-gradient(90deg, #fc5527, #ffbc50);
+}
