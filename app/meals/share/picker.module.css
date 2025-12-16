@@ -1,0 +1,39 @@
+.hidden {
+    display: none;
+}
+
+.picker {
+  margin-bottom: 1.5rem;
+}
+
+.picker label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #ddd6cb;
+  text-transform: uppercase;
+}
+
+.controls {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.preview {
+  width: 10rem;
+  height: 10rem;
+  border: 2px solid #a4abb9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #a4abb9;
+  position: relative;
+}
+
+.preview img {
+  object-fit: cover;
+}

@@ -3,12 +3,19 @@ import classes from './page.module.css'
 import Link from 'next/link'
 import MealsGrid from '@/components/(meals)/meals-grid'
 import { getMeals } from '@/lib/meals';
+import Error from '../error';
 
 export const dynamic = 'force-dynamic';
 
 async function Meals () {
-  const meals = await getMeals();
-  return <MealsGrid meals={meals}></MealsGrid>
+  // const meals = await getMeals();
+  // return <MealsGrid meals={meals}></MealsGrid>
+  try{
+    const meals = await getMeals();
+    return <MealsGrid meals={meals}></MealsGrid>
+  } catch (err) {
+    return <Error error={err}></Error>
+  }
 }
 
 export default function MealsMain() {
