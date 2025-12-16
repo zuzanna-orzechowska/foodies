@@ -171,7 +171,7 @@ const dummyMeals = [
 ];
 
 async function initData() {
-  console.log("⏳ Tworzenie tabeli...");
+  console.log("Tworzenie tabeli...");
   await db.execute(`
     CREATE TABLE IF NOT EXISTS meals (
        id INTEGER PRIMARY KEY AUTOINCREMENT,
